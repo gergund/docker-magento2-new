@@ -1,0 +1,38 @@
+version: '3'
+services:
+
+  php-fpm:
+    hostname: php-fpm.magento.loc     
+    env_file:
+      - .env
+    build: ./php-fpm/.
+    volumes: ['code-data:/var/www/html']
+    links: 
+     - mysql
+    depends_on:
+     - mysql
+
+  nginx:
+    env_file:
+      - .env
+    build: ./nginx/.
+    volumes: ['code-data:/var/www/html']
+    links:
+      - php-fpm
+    depends_on:
+      - php-fpm
+    ports:
+     - "80:80"
+
+  mysql:
+    env_file:
+      - .env
+    build: ./mysql/.
+    ports:
+     - "3306:3306"
+    volumes: ['db-data:/var/lib/mysql']
+
+volumes:
+  db-data: {}
+  code-data: {}
+      
