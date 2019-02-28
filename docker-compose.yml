@@ -9,8 +9,10 @@ services:
     volumes: ['code-data:/var/www/html']
     links: 
      - mysql
+     - redis
     depends_on:
      - mysql
+     - redis
 
   nginx:
     env_file:
@@ -31,6 +33,9 @@ services:
     ports:
      - "3306:3306"
     volumes: ['db-data:/var/lib/mysql']
+
+  redis:
+    build: ./redis/.
 
 volumes:
   db-data: {}

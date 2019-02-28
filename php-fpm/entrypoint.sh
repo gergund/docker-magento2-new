@@ -28,7 +28,7 @@ if [ "$INSTALL_MAGENTO" = "true" ]; then
 	cd /var/www/html/
 	sudo -u www-data composer install
 	
-	sudo -u www-data php bin/magento setup:install --db-host=$MAGENTO_MYSQL_HOST --db-name=$MAGENTO_MYSQL_DB --db-user=$MAGENTO_MYSQL_USER --db-password=$MAGENTO_MYSQL_PASSWORD --base-url=$MAGENTO_URL --backend-frontname=admin --admin-user=$MAGENTO_ADMIN_USER --admin-password=$MAGENTO_ADMIN_PASSWORD --admin-email=$MAGENTO_ADMIN_EMAIL --admin-firstname=Admin --admin-lastname=Admin --language=en_US --currency=USD --timezone=America/Chicago --skip-db-validation
+	sudo -u www-data php bin/magento setup:install --db-host=$MAGENTO_MYSQL_HOST --db-name=$MAGENTO_MYSQL_DB --db-user=$MAGENTO_MYSQL_USER --db-password=$MAGENTO_MYSQL_PASSWORD --base-url=$MAGENTO_URL --backend-frontname=admin --admin-user=$MAGENTO_ADMIN_USER --admin-password=$MAGENTO_ADMIN_PASSWORD --admin-email=$MAGENTO_ADMIN_EMAIL --admin-firstname=Admin --admin-lastname=Admin --language=en_US --currency=USD --timezone=America/Chicago --skip-db-validation --session-save=redis --session-save-redis-host=$MAGENTO_SESSION_REDIS_HOST --cache-backend=redis --cache-backend-redis-server=$MAGENTO_CACHE_REDIS_HOST --page-cache=redis --page-cache-redis-server=$MAGENTO_FPC_REDIS_HOST
 	echo -n "Done..."
 fi
 
