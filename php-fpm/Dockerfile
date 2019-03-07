@@ -53,9 +53,9 @@ ADD entrypoint.sh /entrypoint.sh
 RUN ["chmod", "+x", "/entrypoint.sh"]
 
 RUN mkdir -p /magento-code/ \
-    && git clone https://github.com/gergund/test-project-code.git /magento-code/ \
+    && git clone https://github.com/magento/magento2.git  /magento-code/ \
     && cd /magento-code/ \ 
-    && git checkout master \
+    && git checkout 2.3 \
     && chown -R www-data:www-data /magento-code/
 
 ENTRYPOINT ["/entrypoint.sh"]
